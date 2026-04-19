@@ -15,6 +15,15 @@ connectDB();
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 
+setInterval(async () => {
+  try {
+    const res = await fetch("https://onetrip-backend.onrender.com/api/user/ping-server");
+    console.log(res.status);
+  } catch (error) {
+    console.error("Ping failed:", error.message);
+  }
+}, 300000);
+
 app.listen(5001, function () {
   console.log("Listening on 5001");
 });

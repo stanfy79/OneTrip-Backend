@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
   points: Number,
   totalSpent: Number,
   id: String,
+  rank: Number,
   token: String,
 });
 

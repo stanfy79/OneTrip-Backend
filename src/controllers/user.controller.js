@@ -100,9 +100,9 @@ export const updateUserInfo = async (req, res) => {
     const result = await User.updateOne(filter, updateDocument);
 
     res.status(201).json({
-        success: true,
-        data: result,
-        message: "User data updated successfully!",
+      success: true,
+      data: result,
+      message: "User data updated successfully!",
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -121,9 +121,49 @@ export const deleteUser = async (req, res) => {
     const result = await User.deleteOne(filter, updateDocument);
 
     res.status(201).json({
-        success: true,
-        data: result,
-        message: "User deleted successfully!",
+      success: true,
+      data: result,
+      message: "User deleted successfully!",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+export const getAllUser = async (req, res) => {
+  try {
+    const { _id } = req.body;
+
+    if (!_id) {
+      return res.status(400).json({
+        success: false,
+        message: "Token is required!",
+      });
+    }
+    
+    const users = await User.find();
+
+    res.status(201).json({
+      success: true,
+      data: users.map(user => ({
+        username: user.username,
+        profileUrl: user.profileUrl,
+        points: user.points,
+        totalSpent: user.totalSpent,
+      })),
+      message: "fetched users successfully!",
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+}
+
+
+export const pingServer = async (req, res) => {
+  try {
+    res.status(201).json({
+      success: true,
+      message: "fetched routes successfully!",
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
