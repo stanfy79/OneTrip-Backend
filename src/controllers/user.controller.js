@@ -1,5 +1,6 @@
-
-import { User, SubmitRoute, SearchedRoute } from "../models/User.js";
+import { User } from "../models/User.js";
+import { SubmitRoute } from "../models/SubmittedRoute.js";
+import { SearchedRoute } from "../models/SearchedRoute.js";
 
 export const userDetails = async (req, res) => {
   try {
