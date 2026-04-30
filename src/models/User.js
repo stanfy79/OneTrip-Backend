@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
       routeAlerts: String,
       productUpdates: Boolean,
     },
-    privacy: {
-      showProfile: Boolean,
-      shareActivity: Boolean,
-    },
     theme: String,
   },
   contribution: Number,
